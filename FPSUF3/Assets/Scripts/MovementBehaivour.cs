@@ -62,7 +62,7 @@ public class MovementBehaivour : MonoBehaviour
         {
             Debug.Log($"He tocat {hit.collider.gameObject} a la posici {hit.point} amb normal {hit.normal}");
             Debug.DrawLine(m_Camera.transform.position, hit.point, Color.red, 2f);
-            hit.collider.gameObject.GetComponentInChildren<Camera>().enabled =true;
+            m_Camera.GetComponent<Camera>().enabled = false;
 
         }
     }

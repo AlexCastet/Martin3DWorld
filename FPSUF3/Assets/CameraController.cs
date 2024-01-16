@@ -26,9 +26,9 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Rotate(0, XRotation*m_MouseSpeed*Time.deltaTime,0);
-
         float eulerx = m_camera.transform.localEulerAngles.x;
-        eulerx -= YRotation * m_MouseSpeed * Time.deltaTime;
+        eulerx -= YRotation * m_MouseSpeed * Time.deltaTime; 
         m_camera.transform.localEulerAngles = Vector3.right * eulerx;
+        m_camera.transform.LookAt(m_camera.transform.position);
     }
 }
