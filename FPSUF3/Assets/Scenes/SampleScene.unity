@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 163576293}
   - component: {fileID: 163576292}
   - component: {fileID: 163576296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,6 +1231,7 @@ GameObject:
   - component: {fileID: 411379916}
   - component: {fileID: 411379915}
   - component: {fileID: 411379921}
+  - component: {fileID: 411379922}
   m_Layer: 7
   m_Name: P1
   m_TagString: Untagged
@@ -1252,11 +1253,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 963194225}
   m_Speed: 5
-  m_JumpForce: 100
+  m_JumpForce: 200
   m_inputasset: {fileID: -944628639613478452, guid: 3ba69dd5cac9ccb4c93c746876709bab, type: 3}
   m_ShootMask:
     serializedVersion: 2
     m_Bits: 256
+  m_JumpMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!54 &411379916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1388,6 +1392,19 @@ MonoBehaviour:
   m_camera: {fileID: 963194225}
   m_ClampY: 80
   m_MouseSpeed: 180
+--- !u!114 &411379922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411379914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b73f49601b4354ebec9fd6a79ea90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GravityScale: 1
 --- !u!1 &430896251
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,6 +3483,7 @@ GameObject:
   - component: {fileID: 1958506175}
   - component: {fileID: 1958506174}
   - component: {fileID: 1958506178}
+  - component: {fileID: 1958506179}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -3575,6 +3593,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1958506179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958506173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13db8b628b8190f448741654c092f9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalScaleGravity: 1
+  OnCollisionGravity: 0.33
 --- !u!1 &2098162293
 GameObject:
   m_ObjectHideFlags: 0

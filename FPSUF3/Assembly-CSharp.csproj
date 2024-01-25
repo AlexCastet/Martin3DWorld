@@ -62,6 +62,8 @@
     <Compile Include="Assets\Scripts\MovementBehaivour.cs" />
     <Compile Include="Assets\CameraSecuritatController.cs" />
     <Compile Include="Assets\CameraController.cs" />
+    <Compile Include="Assets\ParedCaidaLenta.cs" />
+    <Compile Include="Assets\CustomGravity.cs" />
     <Compile Include="Assets\Scripts\EnemyBehaivour.cs" />
     <Compile Include="Assets\Scripts\AttackBehaivour.cs" />
   </ItemGroup>

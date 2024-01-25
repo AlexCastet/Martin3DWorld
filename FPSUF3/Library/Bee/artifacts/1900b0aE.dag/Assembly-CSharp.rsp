@@ -361,6 +361,8 @@
 -analyzer:"C:/Program Files/Unity 2022.3.2f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/CameraController.cs"
 "Assets/CameraSecuritatController.cs"
+"Assets/CustomGravity.cs"
+"Assets/ParedCaidaLenta.cs"
 "Assets/Scripts/AttackBehaivour.cs"
 "Assets/Scripts/EnemyBehaivour.cs"
 "Assets/Scripts/MovementBehaivour.cs"

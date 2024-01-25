@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CustomGravity))]
 public class MovementBehaivour : MonoBehaviour
 {
     [SerializeField]
@@ -21,30 +22,33 @@ public class MovementBehaivour : MonoBehaviour
     private InputActionAsset m_inputAction;
     [SerializeField]
     private LayerMask m_ShootMask;
-
+    [SerializeField]
+    private LayerMask m_JumpMask;
     private Vector3 DireccioVelocity = Vector3.zero;
 
-
+    private bool m_Jump;
+    
 
     void Awake()
     {
+        m_Jump = true;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_inputAction = Instantiate(m_inputasset);
         m_inputAction.FindActionMap("Land").FindAction("Movement").performed += Movement;
         m_inputAction.FindActionMap("Land").FindAction("Movement").canceled += StopMovement;
         m_inputAction.FindActionMap("Land").FindAction("Jump").performed += Saltar;
         m_inputAction.FindActionMap("Land").FindAction("Shoot").performed += Disparar;
-        m_inputAction.FindActionMap("Land").FindAction("CanviarACamara").performed += CanviarCamara;
         m_inputAction.FindActionMap("Land").Enable();
         
        
     }
 
-    private void CanviarCamara(InputAction.CallbackContext context)
+    
+    public void EnableJump()
     {
-        
+        if (m_Jump) { return; }
+        m_Jump = true;
     }
-
     private void OnDestroy()
     {
         m_inputAction.FindActionMap("Land").FindAction("Movement").performed -= Movement;
@@ -69,8 +73,11 @@ public class MovementBehaivour : MonoBehaviour
 
     private void Saltar(InputAction.CallbackContext context)
     {
+        if (!m_Jump) return;
+
         m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
         Debug.Log("Salto");
+        m_Jump = false;
     }
 
     private void StopMovement(InputAction.CallbackContext context)
@@ -87,24 +94,24 @@ public class MovementBehaivour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /* if (Input.GetKey(KeyCode.W))
-            DireccioVelocity = m_Camera.transform.forward;
-        if(Input.GetKey(KeyCode.S))
-            DireccioVelocity = -m_Camera.transform.forward;
-        if(Input.GetKey(KeyCode.D))
-            DireccioVelocity = m_Camera.transform.right;
-        if (Input.GetKey(KeyCode.A))
-            DireccioVelocity = -m_Camera.transform.right;
-
-
-        DireccioVelocity = Vector3.zero;
-       */
-        //MouseCamara();
+        PuedoSaltar();
     }
     void FixedUpdate()
     {
         DireccioVelocity.Normalize();
         m_Rigidbody.velocity = (DireccioVelocity.z * transform.forward +DireccioVelocity.x*transform.right) * m_Speed + Vector3.up*m_Rigidbody.velocity.y;
+    }
+
+    private void PuedoSaltar()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1+f, m_JumpMask))
+        {
+            m_Jump = true;
+            Debug.DrawLine(transform.position, hit.point, Color.red, 2f);
+            
+
+        }
     }
     
 }
